@@ -8,6 +8,8 @@ import { motoristasRouter } from "../modules/motoristas/motoristas.routes";
 
 import { veiculosRouter } from "../modules/veiculos/veiculos.routes";
 
+import { rotasRouter } from "../modules/rotas/rotas.routes";
+
 
 const router = Router();
 
@@ -37,6 +39,13 @@ router.use(
 router.use(
   "/veiculos",
   veiculosRouter,
+);
+
+
+
+router.use(
+  "/rotas",
+  rotasRouter,
 );
 
 
