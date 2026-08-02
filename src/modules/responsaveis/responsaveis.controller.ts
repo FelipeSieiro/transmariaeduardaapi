@@ -1,26 +1,25 @@
 import type { Request, Response } from "express";
 
-import { RotasService } from "./rotas.service";
+import { ResponsaveisService } from "./responsaveis.service";
 
 import {
-  createRotaSchema,
-  updateRotaSchema,
-  updateRotaStatusSchema,
-} from "./rotas.schema";
+  createResponsavelSchema,
+  updateResponsavelSchema,
+} from "./responsaveis.schema";
 
 
 
-export class RotasController {
+export class ResponsaveisController {
 
 
-  private service: RotasService;
+  private service: ResponsaveisService;
 
 
 
   constructor() {
 
     this.service =
-      new RotasService();
+      new ResponsaveisService();
 
   }
 
@@ -108,7 +107,7 @@ export class RotasController {
 
 
       const payload =
-        createRotaSchema.parse(
+        createResponsavelSchema.parse(
           req.body,
         );
 
@@ -154,7 +153,7 @@ export class RotasController {
 
 
       const payload =
-        updateRotaSchema.parse(
+        updateResponsavelSchema.parse(
           req.body,
         );
 
@@ -164,55 +163,6 @@ export class RotasController {
         await this.service.update(
           id,
           payload,
-        );
-
-
-
-      return res.json({
-
-        success: true,
-
-        data,
-
-      });
-
-
-    };
-
-
-
-
-
-
-
-
-
-  updateStatus =
-    async (
-      req: Request,
-      res: Response,
-    ) => {
-
-
-      const {
-        id,
-      } = req.params;
-
-
-
-      const {
-        status,
-      } =
-        updateRotaStatusSchema.parse(
-          req.body,
-        );
-
-
-
-      const data =
-        await this.service.updateStatus(
-          id,
-          status,
         );
 
 
@@ -260,7 +210,7 @@ export class RotasController {
         success: true,
 
         message:
-          "Rota removida com sucesso",
+          "Responsável removido com sucesso",
 
       });
 

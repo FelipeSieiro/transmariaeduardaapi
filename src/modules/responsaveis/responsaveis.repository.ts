@@ -1,16 +1,19 @@
 import { supabase } from "../../config/supabase";
 
 import type {
-  CreateRotaDTO,
-  UpdateRotaDTO,
-} from "./rotas.types";
+  CreateResponsavelDTO,
+  UpdateResponsavelDTO,
+} from "./responsaveis.types";
 
 
 
-export class RotasRepository {
+export class ResponsaveisRepository {
 
 
-  private readonly table = "rotas";
+  private readonly table =
+    "responsaveis";
+
+
 
 
 
@@ -23,7 +26,10 @@ export class RotasRepository {
       await supabase
         .from(this.table)
         .select("*")
-        .is("deleted_at", null)
+        .is(
+          "deleted_at",
+          null,
+        )
         .order(
           "created_at",
           {
@@ -34,8 +40,11 @@ export class RotasRepository {
 
 
     if (error) {
+
       throw error;
+
     }
+
 
 
     return data;
@@ -72,8 +81,11 @@ export class RotasRepository {
 
 
     if (error) {
+
       throw error;
+
     }
+
 
 
     return data;
@@ -89,7 +101,7 @@ export class RotasRepository {
 
 
   async create(
-    payload: CreateRotaDTO,
+    payload: CreateResponsavelDTO,
   ) {
 
 
@@ -105,8 +117,11 @@ export class RotasRepository {
 
 
     if (error) {
+
       throw error;
+
     }
+
 
 
     return data;
@@ -123,7 +138,7 @@ export class RotasRepository {
 
   async update(
     id: string,
-    payload: UpdateRotaDTO,
+    payload: UpdateResponsavelDTO,
   ) {
 
 
@@ -143,46 +158,11 @@ export class RotasRepository {
 
 
     if (error) {
+
       throw error;
+
     }
 
-
-    return data;
-
-  }
-
-
-
-
-
-
-
-
-
-  async updateStatus(
-    id: string,
-    status: string,
-  ) {
-
-
-    const { data, error } =
-      await supabase
-        .from(this.table)
-        .update({
-          status,
-        })
-        .eq(
-          "id",
-          id,
-        )
-        .select()
-        .single();
-
-
-
-    if (error) {
-      throw error;
-    }
 
 
     return data;
@@ -206,9 +186,11 @@ export class RotasRepository {
       await supabase
         .from(this.table)
         .update({
+
           deleted_at:
             new Date()
               .toISOString(),
+
         })
         .eq(
           "id",
@@ -218,8 +200,11 @@ export class RotasRepository {
 
 
     if (error) {
+
       throw error;
+
     }
+
 
 
     return true;

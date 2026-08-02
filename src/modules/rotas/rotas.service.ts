@@ -1,6 +1,6 @@
 import { RotasRepository } from "./rotas.repository";
 
-import {
+import type {
   CreateRotaDTO,
   UpdateRotaDTO,
 } from "./rotas.types";

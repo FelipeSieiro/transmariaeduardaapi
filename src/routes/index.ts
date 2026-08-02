@@ -10,6 +10,8 @@ import { veiculosRouter } from "../modules/veiculos/veiculos.routes";
 
 import { rotasRouter } from "../modules/rotas/rotas.routes";
 
+import { responsaveisRouter } from "../modules/responsaveis/responsaveis.routes";
+
 
 const router = Router();
 
@@ -46,6 +48,13 @@ router.use(
 router.use(
   "/rotas",
   rotasRouter,
+);
+
+
+
+router.use(
+  "/responsaveis",
+  responsaveisRouter,
 );
 
 
