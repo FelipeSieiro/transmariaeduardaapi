@@ -6,6 +6,8 @@ import { escolasRouter } from "../modules/escolas/escolas.routes";
 
 import { motoristasRouter } from "../modules/motoristas/motoristas.routes";
 
+import { veiculosRouter } from "../modules/veiculos/veiculos.routes";
+
 
 const router = Router();
 
@@ -28,6 +30,13 @@ router.use(
 router.use(
   "/motoristas",
   motoristasRouter,
+);
+
+
+
+router.use(
+  "/veiculos",
+  veiculosRouter,
 );
 
 
