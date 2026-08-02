@@ -1,0 +1,47 @@
+{
+  "compilerOptions": {
+    /* Linguagem */
+    "target": "ES2022",
+    "lib": ["ES2023"],
+
+    /* Módulos */
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+
+    /* Build */
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    /* Interoperabilidade */
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+
+    /* Qualidade */
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+
+    /* Geração */
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+
+    /* Performance */
+    "skipLibCheck": true,
+
+    /* Node */
+    "types": ["node"],
+
+    /* Consistência */
+    "forceConsistentCasingInFileNames": true,
+
+    "noEmitOnError": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}
