@@ -1,26 +1,26 @@
 import type { Request, Response } from "express";
 
-import { RotasService } from "./rotas.service";
+import { AlunosService } from "./alunos.service";
 
 import {
-  createRotaSchema,
-  updateRotaSchema,
-  updateRotaStatusSchema,
-} from "./rotas.schema";
+  createAlunoSchema,
+  updateAlunoSchema,
+  alunoResponsavelSchema,
+} from "./alunos.schema";
 
 
 
-export class RotasController {
+export class AlunosController {
 
 
-  private service: RotasService;
+  private service: AlunosService;
 
 
 
   constructor() {
 
     this.service =
-      new RotasService();
+      new AlunosService();
 
   }
 
@@ -112,7 +112,7 @@ export class RotasController {
 
 
       const payload =
-        createRotaSchema.parse(
+        createAlunoSchema.parse(
           req.body,
         );
 
@@ -162,7 +162,7 @@ export class RotasController {
       }
 
       const payload =
-        updateRotaSchema.parse(
+        updateAlunoSchema.parse(
           req.body,
         );
 
@@ -172,59 +172,6 @@ export class RotasController {
         await this.service.update(
           id,
           payload,
-        );
-
-
-
-      return res.json({
-
-        success: true,
-
-        data,
-
-      });
-
-
-    };
-
-
-
-
-
-
-
-
-
-  updateStatus =
-    async (
-      req: Request,
-      res: Response,
-    ) => {
-
-
-      const idParam = req.params.id;
-      const id = Array.isArray(idParam) ? idParam[0] : idParam;
-
-      if (!id) {
-        return res.status(400).json({
-          success: false,
-          message: "ID inválido",
-        });
-      }
-
-      const {
-        status,
-      } =
-        updateRotaStatusSchema.parse(
-          req.body,
-        );
-
-
-
-      const data =
-        await this.service.updateStatus(
-          id,
-          status,
         );
 
 
@@ -276,7 +223,58 @@ export class RotasController {
         success: true,
 
         message:
-          "Rota removida com sucesso",
+          "Aluno removido com sucesso",
+
+      });
+
+
+    };
+
+
+
+
+
+
+
+
+
+  addResponsavel =
+    async (
+      req: Request,
+      res: Response,
+    ) => {
+
+
+      const idParam = req.params.id;
+      const id = Array.isArray(idParam) ? idParam[0] : idParam;
+
+      if (!id) {
+        return res.status(400).json({
+          success: false,
+          message: "ID inválido",
+        });
+      }
+
+      const payload =
+        alunoResponsavelSchema.parse(
+          req.body,
+        );
+
+
+
+      const data =
+        await this.service.addResponsavel(
+          id,
+          payload,
+        );
+
+
+
+      return res.status(201).json({
+
+        success: true,
+
+        data,
 
       });
 

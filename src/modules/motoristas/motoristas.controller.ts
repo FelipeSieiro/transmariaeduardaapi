@@ -31,7 +31,7 @@ export class MotoristasController {
 
 
   async findAll(
-    req: Request,
+    _req: Request,
     res: Response,
   ) {
 

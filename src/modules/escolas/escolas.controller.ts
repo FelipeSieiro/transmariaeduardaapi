@@ -22,7 +22,7 @@ export class EscolasController {
 
 
   async findAll(
-    req: Request,
+    _req: Request,
     res: Response,
   ) {
 
@@ -64,8 +64,15 @@ export class EscolasController {
 
     try {
 
-      const { id } = req.params;
+      const idParam = req.params.id;
+      const id = Array.isArray(idParam) ? idParam[0] : idParam;
 
+      if (!id) {
+        return res.status(400).json({
+          success: false,
+          message: "ID inválido",
+        });
+      }
 
       const escola =
         await this.service.findById(id);

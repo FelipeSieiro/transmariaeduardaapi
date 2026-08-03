@@ -12,6 +12,8 @@ import { rotasRouter } from "../modules/rotas/rotas.routes";
 
 import { responsaveisRouter } from "../modules/responsaveis/responsaveis.routes";
 
+import { alunosRouter } from "../modules/alunos/alunos.routes";
+
 
 const router = Router();
 
@@ -55,6 +57,13 @@ router.use(
 router.use(
   "/responsaveis",
   responsaveisRouter,
+);
+
+
+
+router.use(
+  "/alunos",
+  alunosRouter,
 );
 
 

@@ -28,7 +28,7 @@ export class VeiculosController {
 
 
   async findAll(
-    req: Request,
+    _req: Request,
     res: Response,
   ) {
 
@@ -124,10 +124,15 @@ export class VeiculosController {
   ) {
 
 
-    const { id } =
-      req.params;
+    const idParam = req.params.id;
+    const id = Array.isArray(idParam) ? idParam[0] : idParam;
 
-
+    if (!id) {
+      return res.status(400).json({
+        success: false,
+        message: "ID inválido",
+      });
+    }
 
     const payload =
       updateVeiculoSchema.parse(
@@ -165,10 +170,15 @@ export class VeiculosController {
   ) {
 
 
-    const { id } =
-      req.params;
+    const idParam = req.params.id;
+    const id = Array.isArray(idParam) ? idParam[0] : idParam;
 
-
+    if (!id) {
+      return res.status(400).json({
+        success: false,
+        message: "ID inválido",
+      });
+    }
 
     const {
       status,
@@ -208,10 +218,15 @@ export class VeiculosController {
   ) {
 
 
-    const { id } =
-      req.params;
+    const idParam = req.params.id;
+    const id = Array.isArray(idParam) ? idParam[0] : idParam;
 
-
+    if (!id) {
+      return res.status(400).json({
+        success: false,
+        message: "ID inválido",
+      });
+    }
 
     await this.service.delete(
       id,

@@ -67,11 +67,15 @@ export class ResponsaveisController {
     ) => {
 
 
-      const {
-        id,
-      } = req.params;
+      const idParam = req.params.id;
+      const id = Array.isArray(idParam) ? idParam[0] : idParam;
 
-
+      if (!id) {
+        return res.status(400).json({
+          success: false,
+          message: "ID inválido",
+        });
+      }
 
       const data =
         await this.service.findById(
@@ -146,11 +150,15 @@ export class ResponsaveisController {
     ) => {
 
 
-      const {
-        id,
-      } = req.params;
+      const idParam = req.params.id;
+      const id = Array.isArray(idParam) ? idParam[0] : idParam;
 
-
+      if (!id) {
+        return res.status(400).json({
+          success: false,
+          message: "ID inválido",
+        });
+      }
 
       const payload =
         updateResponsavelSchema.parse(
@@ -193,11 +201,15 @@ export class ResponsaveisController {
     ) => {
 
 
-      const {
-        id,
-      } = req.params;
+      const idParam = req.params.id;
+      const id = Array.isArray(idParam) ? idParam[0] : idParam;
 
-
+      if (!id) {
+        return res.status(400).json({
+          success: false,
+          message: "ID inválido",
+        });
+      }
 
       await this.service.delete(
         id,
