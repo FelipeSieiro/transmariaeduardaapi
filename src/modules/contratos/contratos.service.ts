@@ -1,4 +1,5 @@
 import { ContratosRepository } from "./contratos.repository";
+import { MensalidadesService } from "../mensalidades/mensalidades.service";
 
 import type {
   CreateContratoDTO,
@@ -7,243 +8,98 @@ import type {
 
 import { supabase } from "../../config/supabase";
 
-
-
-
-
 export class ContratosService {
-
-
-
   private repository: ContratosRepository;
+  private mensalidadesService: MensalidadesService;
 
-
-
-
-
-  constructor(){
-
-    this.repository =
-      new ContratosRepository();
-
+  constructor() {
+    this.repository = new ContratosRepository();
+    this.mensalidadesService = new MensalidadesService();
   }
 
-
-
-
-
-
-
-
-  async findAll(){
-
-
+  async findAll() {
     return this.repository.findAll();
-
-
   }
 
+  async findById(id: string) {
+    const contrato = await this.repository.findById(id);
 
-
-
-
-
-
-
-
-  async findById(
-    id:string
-  ){
-
-
-    const contrato =
-      await this.repository.findById(
-        id
-      );
-
-
-
-    if(!contrato){
-
-
-      throw new Error(
-        "Contrato não encontrado"
-      );
-
-
+    if (!contrato) {
+      throw new Error("Contrato não encontrado");
     }
-
-
 
     return contrato;
-
-
   }
 
-
-
-
-
-
-
-
-
-  async create(
-    payload:CreateContratoDTO
-  ){
-
-
-
+  // =====================================================
+  // CRIAR CONTRATO + GERAR MENSALIDADES AUTOMÁTICAS
+  // =====================================================
+  async create(payload: CreateContratoDTO) {
     /*
-      Verifica se aluno existe
+      1. Verifica se aluno existe
     */
-
-
-    const {
-      data: aluno,
-    } = await supabase
+    const { data: aluno } = await supabase
       .from("alunos")
       .select("id")
-      .eq(
-        "id",
-        payload.aluno_id
-      )
-      .is(
-        "deleted_at",
-        null
-      )
+      .eq("id", payload.aluno_id)
+      .is("deleted_at", null)
       .single();
 
-
-
-
-
-    if(!aluno){
-
-
-      throw new Error(
-        "Aluno não encontrado"
-      );
-
-
+    if (!aluno) {
+      throw new Error("Aluno não encontrado");
     }
-
-
-
-
-
-
-
 
     /*
-      Verifica número duplicado
+      2. Verifica número duplicado
     */
-
-
-    const {
-      data: contratoExistente
-    } = await supabase
+    const { data: contratoExistente } = await supabase
       .from("contratos")
       .select("id")
-      .eq(
-        "numero",
-        payload.numero
-      )
-      .is(
-        "deleted_at",
-        null
-      )
+      .eq("numero", payload.numero)
+      .is("deleted_at", null)
       .maybeSingle();
 
-
-
-
-
-
-    if(contratoExistente){
-
-
-      throw new Error(
-        "Número de contrato já cadastrado"
-      );
-
-
+    if (contratoExistente) {
+      throw new Error("Número de contrato já cadastrado");
     }
 
+    /*
+      3. Salva o contrato no banco de dados
+    */
+    const novoContrato = await this.repository.create(payload);
 
+    /*
+      4. Dispara a geração automática de mensalidades usando os dados do contrato recém-criado
+    */
+    if (novoContrato && novoContrato.id) {
+      try {
+        await this.mensalidadesService.gerarPorContrato(novoContrato.id);
+      } catch (error) {
+        console.error("Erro ao gerar mensalidades automáticas:", error);
+      }
+    }
 
-
-
-
-
-
-    return this.repository.create(
-      payload
-    );
-
-
+    return novoContrato;
   }
 
+  // =====================================================
+  // ATUALIZAR CONTRATO
+  // =====================================================
+  async update(id: string, payload: UpdateContratoDTO) {
+    await this.findById(id);
 
+    // Salva as alterações do contrato
+    const contratoAtualizado = await this.repository.update(id, payload);
 
-
-
-
-
-
-
-  async update(
-    id:string,
-    payload:UpdateContratoDTO
-  ){
-
-
-
-    await this.findById(
-      id
-    );
-
-
-
-
-    return this.repository.update(
-      id,
-      payload
-    );
-
-
+    return contratoAtualizado;
   }
 
+  // =====================================================
+  // EXCLUIR CONTRATO
+  // =====================================================
+  async delete(id: string) {
+    await this.findById(id);
 
-
-
-
-
-
-
-
-  async delete(
-    id:string
-  ){
-
-
-
-    await this.findById(
-      id
-    );
-
-
-
-
-    return this.repository.delete(
-      id
-    );
-
-
+    return this.repository.delete(id);
   }
-
-
-
-
-
 }
