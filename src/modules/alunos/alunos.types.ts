@@ -75,21 +75,38 @@ export interface Aluno {
 // RESPONSÁVEIS
 // =====================================================
 
+export interface CreateResponsavelDTO {
 
-export interface CreateAlunoResponsavelDTO {
+  nome: string;
 
+  telefone?: string;
 
-  responsavel_id: string;
+  email?: string;
 
+  cpf?: string;
+
+  endereco?: string;
+
+  observacoes?: string;
 
   parentesco?: string;
 
-
   responsavel_financeiro?: boolean;
-
 
   responsavel_emergencia?: boolean;
 
+}
+
+
+export interface CreateAlunoResponsavelDTO {
+
+  responsavel_id: string;
+
+  parentesco?: string;
+
+  responsavel_financeiro?: boolean;
+
+  responsavel_emergencia?: boolean;
 
 }
 
@@ -220,20 +237,14 @@ export interface CreateAlunoDTO {
 
 export interface CreateAlunoCompletoDTO {
 
-
   aluno: CreateAlunoDTO;
 
-
   responsaveis:
-
-    CreateAlunoResponsavelDTO[];
-
+    CreateResponsavelDTO[];
 
 
   contrato?:
-
     CreateContratoDTO;
-
 
 }
 
