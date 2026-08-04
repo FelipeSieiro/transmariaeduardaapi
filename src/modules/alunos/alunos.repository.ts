@@ -183,9 +183,6 @@ export class AlunosRepository {
   ){
 
 
-    /**
-     * separa relacionamento
-     */
     const {
       aluno_responsavel,
       ...dadosAluno
@@ -195,9 +192,6 @@ export class AlunosRepository {
 
 
 
-    /**
-     * cria aluno
-     */
     const {
 
       data:aluno,
@@ -231,9 +225,6 @@ export class AlunosRepository {
 
 
 
-    /**
-     * cria responsáveis vinculados
-     */
     if(
       aluno_responsavel &&
       aluno_responsavel.length
@@ -303,9 +294,6 @@ export class AlunosRepository {
 
 
 
-    /**
-     * retorna completo
-     */
     return this.findById(
       aluno.id
     );
@@ -429,8 +417,11 @@ export class AlunosRepository {
 
 
     const {
+
       data,
+
       error
+
     } = await supabase
 
       .from(
@@ -440,9 +431,29 @@ export class AlunosRepository {
       .insert({
 
         aluno_id:
+
           alunoId,
 
-        ...payload
+
+        responsavel_id:
+
+          payload.responsavel_id,
+
+
+        parentesco:
+
+          payload.parentesco ?? null,
+
+
+        responsavel_financeiro:
+
+          payload.responsavel_financeiro ?? false,
+
+
+        responsavel_emergencia:
+
+          payload.responsavel_emergencia ?? false,
+
 
       })
 

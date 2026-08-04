@@ -68,6 +68,86 @@ export interface Aluno {
 
 
 
+
+
+
+// =====================================================
+// RESPONSÁVEIS
+// =====================================================
+
+
+export interface CreateAlunoResponsavelDTO {
+
+
+  responsavel_id: string;
+
+
+  parentesco?: string;
+
+
+  responsavel_financeiro?: boolean;
+
+
+  responsavel_emergencia?: boolean;
+
+
+}
+
+
+
+
+
+
+
+
+
+// =====================================================
+// CONTRATO
+// =====================================================
+
+
+export interface CreateContratoDTO {
+
+
+  numero?: string;
+
+
+  data_inicio?: string;
+
+
+  data_fim?: string | null;
+
+
+  valor_mensalidade?: number;
+
+
+  dia_vencimento?: number;
+
+
+  forma_pagamento?: string;
+
+
+  observacoes?: string;
+
+
+  status?: string;
+
+
+}
+
+
+
+
+
+
+
+
+
+// =====================================================
+// ALUNO CREATE
+// =====================================================
+
+
 export interface CreateAlunoDTO {
 
 
@@ -129,6 +209,47 @@ export interface CreateAlunoDTO {
 
 
 
+
+
+
+// =====================================================
+// CADASTRO COMPLETO
+// ALUNO + RESPONSÁVEIS + CONTRATO
+// =====================================================
+
+
+export interface CreateAlunoCompletoDTO {
+
+
+  aluno: CreateAlunoDTO;
+
+
+  responsaveis:
+
+    CreateAlunoResponsavelDTO[];
+
+
+
+  contrato?:
+
+    CreateContratoDTO;
+
+
+}
+
+
+
+
+
+
+
+
+
+// =====================================================
+// UPDATE
+// =====================================================
+
+
 export interface UpdateAlunoDTO {
 
 
@@ -175,29 +296,6 @@ export interface UpdateAlunoDTO {
 
 
   data_inicio?: string;
-
-
-}
-
-
-
-
-
-
-
-export interface CreateAlunoResponsavelDTO {
-
-
-  responsavel_id: string;
-
-
-  parentesco?: string;
-
-
-  responsavel_financeiro?: boolean;
-
-
-  responsavel_emergencia?: boolean;
 
 
 }

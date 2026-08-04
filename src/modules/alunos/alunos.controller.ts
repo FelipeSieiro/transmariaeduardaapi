@@ -6,6 +6,7 @@ import {
   createAlunoSchema,
   updateAlunoSchema,
   alunoResponsavelSchema,
+  cadastroAlunoCompletoSchema,
 } from "./alunos.schema";
 
 
@@ -29,6 +30,11 @@ export class AlunosController {
 
 
 
+
+
+  // =====================================================
+  // LISTAR ALUNOS
+  // =====================================================
 
   findAll =
     async (
@@ -61,6 +67,11 @@ export class AlunosController {
 
 
 
+
+  // =====================================================
+  // BUSCAR ALUNO POR ID
+  // =====================================================
+
   findById =
     async (
       req: Request,
@@ -68,20 +79,40 @@ export class AlunosController {
     ) => {
 
 
-      const idParam = req.params.id;
-      const id = Array.isArray(idParam) ? idParam[0] : idParam;
+      const idParam =
+        req.params.id;
+
+
+      const id =
+        Array.isArray(idParam)
+          ? idParam[0]
+          : idParam;
+
+
 
       if (!id) {
+
         return res.status(400).json({
+
           success: false,
-          message: "ID inválido",
+
+          message:
+            "ID inválido",
+
         });
+
       }
+
+
+
+
 
       const data =
         await this.service.findById(
           id,
         );
+
+
 
 
 
@@ -104,6 +135,12 @@ export class AlunosController {
 
 
 
+
+  // =====================================================
+  // CADASTRO INDIVIDUAL
+  // Mantém funcionando
+  // =====================================================
+
   create =
     async (
       req: Request,
@@ -118,10 +155,14 @@ export class AlunosController {
 
 
 
+
+
       const data =
         await this.service.create(
           payload,
         );
+
+
 
 
 
@@ -144,6 +185,61 @@ export class AlunosController {
 
 
 
+
+  // =====================================================
+  // CADASTRO COMPLETO
+  // ALUNO + RESPONSÁVEIS + CONTRATO
+  // =====================================================
+
+  createCompleto =
+    async (
+      req: Request,
+      res: Response,
+    ) => {
+
+
+      const payload =
+        cadastroAlunoCompletoSchema.parse(
+          req.body,
+        );
+
+
+
+
+
+      const data =
+        await this.service.createCompleto(
+          payload,
+        );
+
+
+
+
+
+      return res.status(201).json({
+
+        success: true,
+
+        data,
+
+      });
+
+
+    };
+
+
+
+
+
+
+
+
+
+
+  // =====================================================
+  // ATUALIZAR ALUNO
+  // =====================================================
+
   update =
     async (
       req: Request,
@@ -151,15 +247,33 @@ export class AlunosController {
     ) => {
 
 
-      const idParam = req.params.id;
-      const id = Array.isArray(idParam) ? idParam[0] : idParam;
+      const idParam =
+        req.params.id;
+
+
+      const id =
+        Array.isArray(idParam)
+          ? idParam[0]
+          : idParam;
+
+
 
       if (!id) {
+
         return res.status(400).json({
+
           success: false,
-          message: "ID inválido",
+
+          message:
+            "ID inválido",
+
         });
+
       }
+
+
+
+
 
       const payload =
         updateAlunoSchema.parse(
@@ -168,11 +282,15 @@ export class AlunosController {
 
 
 
+
+
       const data =
         await this.service.update(
           id,
           payload,
         );
+
+
 
 
 
@@ -195,6 +313,11 @@ export class AlunosController {
 
 
 
+
+  // =====================================================
+  // REMOVER ALUNO
+  // =====================================================
+
   delete =
     async (
       req: Request,
@@ -202,19 +325,39 @@ export class AlunosController {
     ) => {
 
 
-      const idParam = req.params.id;
-      const id = Array.isArray(idParam) ? idParam[0] : idParam;
+      const idParam =
+        req.params.id;
+
+
+      const id =
+        Array.isArray(idParam)
+          ? idParam[0]
+          : idParam;
+
+
 
       if (!id) {
+
         return res.status(400).json({
+
           success: false,
-          message: "ID inválido",
+
+          message:
+            "ID inválido",
+
         });
+
       }
+
+
+
+
 
       await this.service.delete(
         id,
       );
+
+
 
 
 
@@ -238,6 +381,12 @@ export class AlunosController {
 
 
 
+
+  // =====================================================
+  // ADICIONAR RESPONSÁVEL EM ALUNO EXISTENTE
+  // Mantém funcionando
+  // =====================================================
+
   addResponsavel =
     async (
       req: Request,
@@ -245,15 +394,33 @@ export class AlunosController {
     ) => {
 
 
-      const idParam = req.params.id;
-      const id = Array.isArray(idParam) ? idParam[0] : idParam;
+      const idParam =
+        req.params.id;
+
+
+      const id =
+        Array.isArray(idParam)
+          ? idParam[0]
+          : idParam;
+
+
 
       if (!id) {
+
         return res.status(400).json({
+
           success: false,
-          message: "ID inválido",
+
+          message:
+            "ID inválido",
+
         });
+
       }
+
+
+
+
 
       const payload =
         alunoResponsavelSchema.parse(
@@ -262,11 +429,15 @@ export class AlunosController {
 
 
 
+
+
       const data =
         await this.service.addResponsavel(
           id,
           payload,
         );
+
+
 
 
 
@@ -280,6 +451,7 @@ export class AlunosController {
 
 
     };
+
 
 
 }

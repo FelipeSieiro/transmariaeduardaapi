@@ -4,6 +4,7 @@ import type {
   CreateAlunoDTO,
   UpdateAlunoDTO,
   CreateAlunoResponsavelDTO,
+  CreateAlunoCompletoDTO,
 } from "./alunos.types";
 
 import { supabase } from "../../config/supabase";
@@ -182,6 +183,199 @@ export class AlunosService {
     return this.repository.create(
       payload,
     );
+
+  }
+
+
+
+
+
+
+
+
+
+  // =====================================================
+  // CADASTRO COMPLETO
+  // ALUNO + RESPONSÁVEIS + CONTRATO
+  // =====================================================
+
+
+  async createCompleto(
+
+    payload: CreateAlunoCompletoDTO
+
+  ) {
+
+
+
+    const aluno =
+
+      await this.create(
+
+        payload.aluno
+
+      );
+
+
+
+
+
+
+
+    if (
+
+      payload.responsaveis &&
+
+      payload.responsaveis.length > 0
+
+    ) {
+
+
+
+      for (
+
+        const responsavel
+
+        of payload.responsaveis
+
+      ) {
+
+
+
+        await this.repository.addResponsavel(
+
+          aluno.id,
+
+          responsavel
+
+        );
+
+
+      }
+
+
+    }
+
+
+
+
+
+
+
+
+    if (
+
+      payload.contrato
+
+    ) {
+
+
+
+      const {
+
+        error
+
+      } = await supabase
+
+        .from(
+
+          "contratos"
+
+        )
+
+        .insert({
+
+
+
+          aluno_id:
+
+            aluno.id,
+
+
+
+          numero:
+
+            payload.contrato.numero,
+
+
+
+          data_inicio:
+
+            payload.contrato.data_inicio,
+
+
+
+          data_fim:
+
+            payload.contrato.data_fim ?? null,
+
+
+
+          valor_mensalidade:
+
+            payload.contrato.valor_mensalidade ?? 0,
+
+
+
+          dia_vencimento:
+
+            payload.contrato.dia_vencimento ?? 0,
+
+
+
+          forma_pagamento:
+
+            payload.contrato.forma_pagamento,
+
+
+
+          observacoes:
+
+            payload.contrato.observacoes,
+
+
+
+          status:
+
+            payload.contrato.status ?? "ativo",
+
+
+        });
+
+
+
+
+
+      if (error) {
+
+
+        throw new Error(
+
+          "Erro ao criar contrato: "
+
+          + error.message
+
+        );
+
+
+      }
+
+
+    }
+
+
+
+
+
+
+
+
+    return this.repository.findById(
+
+      aluno.id
+
+    );
+
 
   }
 

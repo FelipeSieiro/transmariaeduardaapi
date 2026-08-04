@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 
+
 export const alunoResponsavelSchema = z.object({
 
 
@@ -245,6 +246,134 @@ export const createAlunoSchema = z.object({
 
 
 
+// =====================================================
+// CONTRATO
+// =====================================================
+
+
+export const contratoSchema = z.object({
+
+
+  numero:
+
+    z.string()
+    .optional(),
+
+
+
+  data_inicio:
+
+    z.string()
+    .optional(),
+
+
+
+  data_fim:
+
+    z.string()
+    .nullable()
+    .optional(),
+
+
+
+  valor_mensalidade:
+
+    z.number()
+    .optional()
+    .default(0),
+
+
+
+  dia_vencimento:
+
+    z.number()
+    .optional()
+    .default(0),
+
+
+
+  forma_pagamento:
+
+    z.string()
+    .optional(),
+
+
+
+  observacoes:
+
+    z.string()
+    .optional(),
+
+
+
+  status:
+
+    z.string()
+    .optional()
+    .default("ativo"),
+
+
+});
+
+
+
+
+
+
+
+
+
+// =====================================================
+// CADASTRO COMPLETO
+// ALUNO + RESPONSÁVEIS + CONTRATO
+// =====================================================
+
+
+export const cadastroAlunoCompletoSchema = z.object({
+
+
+  aluno:
+
+    createAlunoSchema
+    .omit({
+
+      aluno_responsavel: true
+
+    }),
+
+
+
+
+
+  responsaveis:
+
+    z.array(
+
+      alunoResponsavelSchema
+
+    )
+    .default([]),
+
+
+
+
+
+  contrato:
+
+    contratoSchema
+    .optional(),
+
+
+});
+
+
+
+
+
+
+
+
+
 export const updateAlunoSchema = z.object({
 
 
@@ -406,15 +535,54 @@ export const updateAlunoSchema = z.object({
 
 
 
+
+
+
+
+
+
 export type CreateAlunoSchema =
-  z.infer<typeof createAlunoSchema>;
+
+  z.infer<
+    typeof createAlunoSchema
+  >;
+
+
 
 
 
 export type UpdateAlunoSchema =
-  z.infer<typeof updateAlunoSchema>;
+
+  z.infer<
+    typeof updateAlunoSchema
+  >;
+
+
 
 
 
 export type AlunoResponsavelSchema =
-  z.infer<typeof alunoResponsavelSchema>;
+
+  z.infer<
+    typeof alunoResponsavelSchema
+  >;
+
+
+
+
+
+export type ContratoSchema =
+
+  z.infer<
+    typeof contratoSchema
+  >;
+
+
+
+
+
+export type CadastroAlunoCompletoSchema =
+
+  z.infer<
+    typeof cadastroAlunoCompletoSchema
+  >;
