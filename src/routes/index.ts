@@ -14,6 +14,8 @@ import { responsaveisRouter } from "../modules/responsaveis/responsaveis.routes"
 
 import { alunosRouter } from "../modules/alunos/alunos.routes";
 
+import contratosRoutes from "../modules/contratos/contratos.routes";
+
 
 const router = Router();
 
@@ -64,6 +66,11 @@ router.use(
 router.use(
   "/alunos",
   alunosRouter,
+);
+
+router.use(
+  "/contratos",
+  contratosRoutes
 );
 
 
