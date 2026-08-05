@@ -9,7 +9,7 @@ export function authorize(
 
     return (
         req: Request,
-        res: Response,
+        _res: Response,
         next: NextFunction
     ) => {
 

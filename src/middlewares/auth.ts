@@ -7,7 +7,7 @@ import { AppError } from "../errors/AppError";
 
 export function authenticate(
     req: Request,
-    res: Response,
+    _res: Response,
     next: NextFunction
 ) {
 

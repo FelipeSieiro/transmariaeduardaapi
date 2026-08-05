@@ -5,9 +5,9 @@ import { DatabaseError } from "../errors/DatabaseError";
 
 export function errorHandler(
     error: Error,
-    req: Request,
+    _req: Request,
     res: Response,
-    next: NextFunction
+    _next: NextFunction
 ){
 
     console.error(error);

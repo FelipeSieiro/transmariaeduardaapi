@@ -1,34 +1,21 @@
 import { Request, Response, NextFunction } from "express";
-import { ZodTypeAny } from "zod";
+import { ZodSchema } from "zod";
 
+export function validate(schema: ZodSchema) {
+  return (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): void => {
+    try {
+      schema.parse(req.body);
 
-export function validate(schema: ZodTypeAny){
-
-    return (
-        req: Request,
-        res: Response,
-        next: NextFunction
-    ) => {
-
-        try {
-
-            req.body = schema.parse(req.body);
-
-            next();
-
-
-        } catch(error){
-
-            return res.status(400).json({
-
-                message:"Dados inválidos",
-
-                error
-
-            });
-
-        }
-
-    };
-
+      next();
+    } catch (error) {
+      res.status(400).json({
+        message: "Dados inválidos",
+        error
+      });
+    }
+  };
 }
