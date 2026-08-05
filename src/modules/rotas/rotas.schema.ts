@@ -1,109 +1,51 @@
 import { z } from "zod";
 
-
+const optionalString = z
+  .string()
+  .transform((val) => (val.trim() === "" ? undefined : val))
+  .nullish()
+  .transform((val) => val ?? undefined);
 
 export const createRotaSchema = z.object({
-
   nome: z
     .string()
     .min(1, "Nome da rota é obrigatório"),
 
+  descricao: optionalString,
 
-  descricao: z
-    .string()
-    .optional(),
+  bairro: optionalString,
 
+  horario_saida: optionalString,
 
-  bairro: z
-    .string()
-    .optional(),
+  horario_retorno: optionalString,
 
-
-  horario_saida: z
-    .string()
-    .optional(),
-
-
-  horario_retorno: z
-    .string()
-    .optional(),
-
+  // REMOVIDO: campo 'tempo' não existe mais
 
   motorista_id: z
-    .uuid()
-    .optional(),
-
+    .string()
+    .uuid("ID do motorista inválido")
+    .nullish()
+    .transform((val) => val ?? undefined),
 
   veiculo_id: z
-    .uuid()
-    .optional(),
-
-
-  status: z
     .string()
-    .optional(),
+    .uuid("ID do veículo inválido")
+    .nullish()
+    .transform((val) => val ?? undefined),
 
+  escola_id: z
+    .string()
+    .uuid("ID da escola inválido")
+    .nullish()
+    .transform((val) => val ?? undefined),
+
+  status: optionalString,
 });
 
-
-
-
-
-export const updateRotaSchema = z.object({
-
-  nome: z
-    .string()
-    .min(1)
-    .optional(),
-
-
-  descricao: z
-    .string()
-    .optional(),
-
-
-  bairro: z
-    .string()
-    .optional(),
-
-
-  horario_saida: z
-    .string()
-    .optional(),
-
-
-  horario_retorno: z
-    .string()
-    .optional(),
-
-
-  motorista_id: z
-    .uuid()
-    .optional()
-    .nullable(),
-
-
-  veiculo_id: z
-    .uuid()
-    .optional()
-    .nullable(),
-
-
-  status: z
-    .string()
-    .optional(),
-
-});
-
-
-
-
-
+export const updateRotaSchema = createRotaSchema.partial();
 
 export const updateRotaStatusSchema = z.object({
-
   status: z
     .string()
     .min(1, "Status obrigatório"),
-
 });
