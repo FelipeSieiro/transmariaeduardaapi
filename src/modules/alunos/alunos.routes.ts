@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { authorize } from "../../middlewares/authorize.js";
 import { AlunosController } from "./alunos.controller.js";
 
 const router = Router();
@@ -15,6 +16,8 @@ router.get(
 
 router.post(
   "/",
+  authorize("ADMIN"),
+
   controller.create,
 );
 

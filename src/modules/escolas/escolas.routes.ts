@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { authorize } from "../../middlewares/authorize.js";
 
 import { EscolasController } from "./escolas.controller.js";
 
@@ -31,6 +32,7 @@ router.get(
 
 router.post(
   "/",
+  authorize("ADMIN"),
   controller.create.bind(controller),
 );
 
@@ -40,6 +42,7 @@ router.post(
 
 router.put(
   "/:id",
+  authorize("ADMIN"),
   controller.update.bind(controller),
 );
 
@@ -49,6 +52,7 @@ router.put(
 
 router.delete(
   "/:id",
+  authorize("ADMIN"),
   controller.delete.bind(controller),
 );
 

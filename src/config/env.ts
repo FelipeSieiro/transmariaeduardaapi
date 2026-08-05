@@ -1,31 +1,46 @@
-import { config } from "dotenv";
+import "dotenv/config";
+
 import { z } from "zod";
 
-config();
 
 const envSchema = z.object({
-  NODE_ENV: z.enum(["development", "test", "production"]),
 
-  PORT: z.coerce.number().int().positive(),
+    NODE_ENV:
+        z.string()
+        .default("development"),
 
-  API_PREFIX: z.string().min(1),
 
-  SUPABASE_URL: z.url(),
+    PORT:
+        z.coerce.number()
+        .default(3000),
 
-  SUPABASE_SERVICE_ROLE_KEY: z.string().min(1),
 
-  JWT_SECRET: z.string().min(10),
+    API_PREFIX:
+        z.string()
+        .default("/api"),
 
-  JWT_EXPIRES_IN: z.string().min(1),
+
+    SUPABASE_URL:
+        z.string()
+        .url(),
+
+
+    SUPABASE_SERVICE_ROLE_KEY:
+        z.string(),
+
+
+    JWT_SECRET:
+        z.string()
+        .min(32),
+
+
+    JWT_EXPIRES_IN:
+        z.string()
+        .default("5h"),
+
 });
 
-const parsed = envSchema.safeParse(process.env);
 
-if (!parsed.success) {
-  console.error("❌ Variáveis de ambiente inválidas.\n");
-  console.error(parsed.error.format());
 
-  process.exit(1);
-}
-
-export const env = parsed.data;
+export const env =
+    envSchema.parse(process.env);
