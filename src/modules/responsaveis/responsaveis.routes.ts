@@ -1,6 +1,8 @@
 import { Router } from "express";
 
 import { ResponsaveisController } from "./responsaveis.controller.js";
+import { authenticate } from "../../middlewares/auth.js";
+import { authorize } from "../../middlewares/authorize.js";
 
 
 const router = Router();
@@ -15,6 +17,8 @@ const controller =
 
 router.get(
   "/",
+  authenticate,
+  authorize("ADMIN"),
   controller.findAll,
 );
 
@@ -24,6 +28,8 @@ router.get(
 
 router.get(
   "/:id",
+  authenticate,
+  authorize("ADMIN"),
   controller.findById,
 );
 
@@ -33,6 +39,8 @@ router.get(
 
 router.post(
   "/",
+  authenticate,
+  authorize("ADMIN"),
   controller.create,
 );
 
@@ -42,6 +50,8 @@ router.post(
 
 router.put(
   "/:id",
+  authenticate,
+  authorize("ADMIN"),
   controller.update,
 );
 
@@ -51,6 +61,8 @@ router.put(
 
 router.delete(
   "/:id",
+  authenticate,
+  authorize("ADMIN"),
   controller.delete,
 );
 

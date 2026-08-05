@@ -4,6 +4,8 @@ import {
 
 
 import {
+import { authenticate } from "../../middlewares/auth.js";
+import { authorize } from "../../middlewares/authorize.js";
   ContratosController
 } from "./contratos.controller.js";
 
@@ -29,7 +31,9 @@ const controller =
 
 router.get(
   "/",
-  controller.findAll
+  authenticate,
+  authorize("ADMIN"),
+  controller.findAll,
 );
 
 
@@ -38,7 +42,9 @@ router.get(
 
 router.get(
   "/:id",
-  controller.findById
+  authenticate,
+  authorize("ADMIN"),
+  controller.findById,
 );
 
 
@@ -47,7 +53,9 @@ router.get(
 
 router.post(
   "/",
-  controller.create
+  authenticate,
+  authorize("ADMIN"),
+  controller.create,
 );
 
 
@@ -56,7 +64,9 @@ router.post(
 
 router.put(
   "/:id",
-  controller.update
+  authenticate,
+  authorize("ADMIN"),
+  controller.update,
 );
 
 
@@ -65,7 +75,9 @@ router.put(
 
 router.delete(
   "/:id",
-  controller.delete
+  authenticate,
+  authorize("ADMIN"),
+  controller.delete,
 );
 
 

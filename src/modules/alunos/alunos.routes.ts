@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { authorize } from "../../middlewares/authorize.js";
 import { AlunosController } from "./alunos.controller.js";
+import { authenticate } from "../../middlewares/auth.js";
 
 const router = Router();
 const controller = new AlunosController();
@@ -11,6 +12,8 @@ const controller = new AlunosController();
 
 router.get(
   "/",
+  authenticate,
+  authorize("ADMIN"),
   controller.findAll,
 );
 
@@ -23,6 +26,8 @@ router.post(
 
 router.post(
   "/completo",
+  authenticate,
+  authorize("ADMIN"),
   controller.createCompleto,
 );
 
@@ -34,17 +39,23 @@ router.post(
 // Responsáveis
 router.post(
   "/:id/responsaveis",
+  authenticate,
+  authorize("ADMIN"),
   controller.addResponsavel,
 );
 
 // Agendamento de Rotas Semanais
 router.get(
   "/:id/agendamentos-rotas",
+  authenticate,
+  authorize("ADMIN"),
   controller.getAgendamentosRotas,
 );
 
 router.put(
   "/:id/agendamentos-rotas",
+  authenticate,
+  authorize("ADMIN"),
   controller.syncAgendamentosRotas,
 );
 
@@ -54,16 +65,22 @@ router.put(
 
 router.get(
   "/:id",
+  authenticate,
+  authorize("ADMIN"),
   controller.findById,
 );
 
 router.put(
   "/:id",
+  authenticate,
+  authorize("ADMIN"),
   controller.update,
 );
 
 router.delete(
   "/:id",
+  authenticate,
+  authorize("ADMIN"),
   controller.delete,
 );
 

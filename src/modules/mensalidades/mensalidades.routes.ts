@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { authorize } from "../../middlewares/authorize.js";
 import { MensalidadesController } from "./mensalidades.controller.js";
+import { authenticate } from "../../middlewares/auth.js";
 
 const router = Router();
 const controller = new MensalidadesController();

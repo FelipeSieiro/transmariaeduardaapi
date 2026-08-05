@@ -1,6 +1,8 @@
 import { Router } from "express";
 
 import { MotoristasController } from "./motoristas.controller.js";
+import { authenticate } from "../../middlewares/auth.js";
+import { authorize } from "../../middlewares/authorize.js";
 
 
 const router = Router();
@@ -14,6 +16,8 @@ const controller =
 
 router.get(
   "/",
+  authenticate,
+  authorize("ADMIN"),
   controller.findAll.bind(controller),
 );
 
@@ -23,6 +27,8 @@ router.get(
 
 router.get(
   "/:id",
+  authenticate,
+  authorize("ADMIN"),
   controller.findById.bind(controller),
 );
 
@@ -32,6 +38,8 @@ router.get(
 
 router.post(
   "/",
+  authenticate,
+  authorize("ADMIN"),
   controller.create.bind(controller),
 );
 
@@ -41,6 +49,8 @@ router.post(
 
 router.put(
   "/:id",
+  authenticate,
+  authorize("ADMIN"),
   controller.update.bind(controller),
 );
 
@@ -50,6 +60,8 @@ router.put(
 
 router.delete(
   "/:id",
+  authenticate,
+  authorize("ADMIN"),
   controller.delete.bind(controller),
 );
 
@@ -59,6 +71,8 @@ router.delete(
 
 router.patch(
   "/:id/status",
+  authenticate,
+  authorize("ADMIN"),
   controller.updateStatus.bind(controller),
 );
 
