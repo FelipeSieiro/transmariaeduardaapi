@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 
-import { AuthService } from "./auth.service";
+import { AuthService } from "./auth.service.js";
 
-import { successResponse } from "../utils/apiResponse";
+import { successResponse } from "../utils/apiResponse.js";
 
 
 

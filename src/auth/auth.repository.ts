@@ -1,5 +1,5 @@
 import { supabase } from "../config/supabase.js";
-import { User, CreateUserDTO } from "./auth.types";
+import { User, CreateUserDTO } from "./auth.types.js";
 
 export class AuthRepository {
     async findByEmail(email: string): Promise<User | null> {

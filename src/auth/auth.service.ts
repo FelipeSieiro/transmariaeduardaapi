@@ -1,8 +1,8 @@
 import bcrypt from "bcrypt";
-import { AppError } from "../errors/AppError";
-import { AuthRepository } from "./auth.repository";
-import { CreateUserDTO, LoginDTO } from "./auth.types";
-import { generateToken } from "../utils/jwt";
+import { AppError } from "../errors/AppError.js";
+import { AuthRepository } from "./auth.repository.js";
+import { CreateUserDTO, LoginDTO } from "./auth.types.js";
+import { generateToken } from "../utils/jwt.js";
 import { supabase } from "../config/supabase.js";
 
 export class AuthService {

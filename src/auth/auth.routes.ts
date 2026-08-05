@@ -1,16 +1,16 @@
 import { Router } from "express";
-import { authenticate } from "../middlewares/auth";
+import { authenticate } from "../middlewares/auth.js";
 
-import { AuthController } from "./auth.controller";
+import { AuthController } from "./auth.controller.js";
 
-import { validate } from "../middlewares/validate";
+import { validate } from "../middlewares/validate.js";
 
 import {
     createUserSchema,
     loginSchema
-} from "./auth.schema";
+} from "./auth.schema.js";
 
-import { asyncHandler } from "../middlewares/asyncHandler";
+import { asyncHandler } from "../middlewares/asyncHandler.js";
 
 
 const router = Router();

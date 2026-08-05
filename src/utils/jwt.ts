@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { JwtPayload } from "../auth/auth.types";
+import { JwtPayload } from "../auth/auth.types.js";
 
 
 

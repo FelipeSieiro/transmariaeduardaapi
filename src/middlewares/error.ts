@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
-import { AppError } from "../errors/AppError";
-import { DatabaseError } from "../errors/DatabaseError";
+import { AppError } from "../errors/AppError.js";
+import { DatabaseError } from "../errors/DatabaseError.js";
 
 
 export function errorHandler(
