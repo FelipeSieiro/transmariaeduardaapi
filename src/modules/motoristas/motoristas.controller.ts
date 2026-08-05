@@ -1,12 +1,12 @@
 import type { Request, Response } from "express";
 
-import { MotoristasService } from "./motoristas.service";
+import { MotoristasService } from "./motoristas.service.js";
 
 import {
   createMotoristaSchema,
   updateMotoristaSchema,
   updateStatusMotoristaSchema,
-} from "./motoristas.schema";
+} from "./motoristas.schema.js";
 
 
 

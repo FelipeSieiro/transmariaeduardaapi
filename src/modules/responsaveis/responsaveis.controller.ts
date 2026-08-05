@@ -1,11 +1,11 @@
 import type { Request, Response } from "express";
 
-import { ResponsaveisService } from "./responsaveis.service";
+import { ResponsaveisService } from "./responsaveis.service.js";
 
 import {
   createResponsavelSchema,
   updateResponsavelSchema,
-} from "./responsaveis.schema";
+} from "./responsaveis.schema.js";
 
 
 

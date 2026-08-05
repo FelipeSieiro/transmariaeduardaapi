@@ -1,13 +1,13 @@
 import type { Request, Response } from "express";
 import { ZodError } from "zod";
 
-import { AlunosService } from "./alunos.service";
+import { AlunosService } from "./alunos.service.js";
 import {
   createAlunoSchema,
   updateAlunoSchema,
   responsavelSchema,
   cadastroAlunoCompletoSchema,
-} from "./alunos.schema";
+} from "./alunos.schema.js";
 
 export class AlunosController {
   private service: AlunosService;

@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { RotasController } from "./rotas.controller";
+import { RotasController } from "./rotas.controller.js";
 
 
 const router = Router();

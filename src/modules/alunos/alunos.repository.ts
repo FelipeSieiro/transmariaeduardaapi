@@ -1,10 +1,10 @@
-import { supabase } from "../../config/supabase";
+import { supabase } from "../../config/supabase.js";
 
 import type {
   CreateAlunoDTO,
   UpdateAlunoDTO,
   CreateAlunoResponsavelDTO,
-} from "./alunos.types";
+} from "./alunos.types.js";
 
 
 

@@ -5,7 +5,7 @@ import {
 
 import {
   ContratosController
-} from "./contratos.controller";
+} from "./contratos.controller.js";
 
 
 

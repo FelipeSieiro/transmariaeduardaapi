@@ -1,7 +1,7 @@
-import { Injectable, NotFoundException } from "../../shared/nest-compat";
-import { supabase } from "../../config/supabase";
+import { Injectable, NotFoundException } from "../../shared/nest-compat.js";
+import { supabase } from "../../config/supabase.js";
 
-import type { ItemAgendamentoRotaDto } from "./dtos/aluno-agendamento-rota.dto";
+import type { ItemAgendamentoRotaDto } from "./dtos/aluno-agendamento-rota.dto.js";
 
 
 @Injectable()

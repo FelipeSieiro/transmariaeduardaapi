@@ -1,11 +1,11 @@
 import type { Request, Response } from "express";
 
-import { EscolasService } from "./escolas.service";
+import { EscolasService } from "./escolas.service.js";
 
 import {
   createEscolaSchema,
   updateEscolaSchema,
-} from "./escolas.schema";
+} from "./escolas.schema.js";
 
 
 export class EscolasController {

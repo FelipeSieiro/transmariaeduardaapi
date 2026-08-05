@@ -1,9 +1,9 @@
-import { ResponsaveisRepository } from "./responsaveis.repository";
+import { ResponsaveisRepository } from "./responsaveis.repository.js";
 
 import type {
   CreateResponsavelDTO,
   UpdateResponsavelDTO,
-} from "./responsaveis.types";
+} from "./responsaveis.types.js";
 
 
 

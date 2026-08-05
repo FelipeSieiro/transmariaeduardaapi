@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { EscolasController } from "./escolas.controller";
+import { EscolasController } from "./escolas.controller.js";
 
 
 const router = Router();

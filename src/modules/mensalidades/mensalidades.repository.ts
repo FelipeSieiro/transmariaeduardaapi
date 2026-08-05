@@ -1,9 +1,9 @@
-import { supabase } from "../../config/supabase";
+import { supabase } from "../../config/supabase.js";
 import type {
   CreateMensalidadeDTO,
   UpdateMensalidadeDTO,
   PagarMensalidadeDTO,
-} from "./mensalidades.types";
+} from "./mensalidades.types.js";
 
 export class MensalidadesRepository {
   // =====================================================

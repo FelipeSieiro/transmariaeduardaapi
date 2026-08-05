@@ -1,10 +1,10 @@
 
 
-import { supabase } from "../../config/supabase";
+import { supabase } from "../../config/supabase.js";
 import type {
   CreateMotoristaDTO,
   UpdateMotoristaDTO,
-} from "./motoristas.types";
+} from "./motoristas.types.js";
 
 
 

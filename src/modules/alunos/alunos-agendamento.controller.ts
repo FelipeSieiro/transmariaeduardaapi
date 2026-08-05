@@ -1,6 +1,6 @@
-import { Body, Controller, Get, Param, Put } from "../../shared/nest-compat";
-import type { AlunosAgendamentoService } from "./alunos-agendamento.service";
-import type { SyncAgendamentosAlunoDto } from "./dtos/aluno-agendamento-rota.dto";
+import { Body, Controller, Get, Param, Put } from "../../shared/nest-compat.js";
+import type { AlunosAgendamentoService } from "./alunos-agendamento.service.js";
+import type { SyncAgendamentosAlunoDto } from "./dtos/aluno-agendamento-rota.dto.js";
 
 @Controller("alunos")
 export class AlunosAgendamentoController {

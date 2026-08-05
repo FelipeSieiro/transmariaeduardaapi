@@ -1,9 +1,9 @@
 // src/services/rotas.service.ts
-import { RotasRepository } from "./rotas.repository";
+import { RotasRepository } from "./rotas.repository.js";
 import type {
   CreateRotaDTO,
   UpdateRotaDTO,
-} from "./rotas.types";
+} from "./rotas.types.js";
 
 export class RotasService {
   private repository: RotasRepository;

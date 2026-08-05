@@ -1,9 +1,9 @@
-import { MotoristasRepository } from "./motoristas.repository";
+import { MotoristasRepository } from "./motoristas.repository.js";
 
 import type {
   CreateMotoristaDTO,
   UpdateMotoristaDTO,
-} from "./motoristas.types";
+} from "./motoristas.types.js";
 
 
 

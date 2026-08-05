@@ -1,9 +1,9 @@
-import { supabase } from "../../config/supabase";
+import { supabase } from "../../config/supabase.js";
 
 import type {
   CreateResponsavelDTO,
   UpdateResponsavelDTO,
-} from "./responsaveis.types";
+} from "./responsaveis.types.js";
 
 
 

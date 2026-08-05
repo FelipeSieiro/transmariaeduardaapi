@@ -1,9 +1,9 @@
-import { supabase } from "../../config/supabase";
+import { supabase } from "../../config/supabase.js";
 
 import type {
   CreateContratoDTO,
   UpdateContratoDTO
-} from "./contratos.types";
+} from "./contratos.types.js";
 
 
 

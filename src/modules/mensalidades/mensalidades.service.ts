@@ -1,10 +1,10 @@
-import { MensalidadesRepository } from "./mensalidades.repository";
+import { MensalidadesRepository } from "./mensalidades.repository.js";
 import type {
   CreateMensalidadeDTO,
   UpdateMensalidadeDTO,
   PagarMensalidadeDTO,
-} from "./mensalidades.types";
-import { supabase } from "../../config/supabase";
+} from "./mensalidades.types.js";
+import { supabase } from "../../config/supabase.js";
 
 export class MensalidadesService {
   private repository: MensalidadesRepository;

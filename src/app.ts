@@ -3,8 +3,8 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 
-import { env } from "./config/env";
-import { router } from "./routes";
+import { env } from "./config/env.js";
+import { router } from "./routes/index.js";
 
 const app = express();
 

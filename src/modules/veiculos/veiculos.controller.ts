@@ -1,12 +1,12 @@
 import type { Request, Response } from "express";
 
-import { VeiculosService } from "./veiculos.service";
+import { VeiculosService } from "./veiculos.service.js";
 
 import {
   createVeiculoSchema,
   updateVeiculoSchema,
   updateVeiculoStatusSchema,
-} from "./veiculos.schema";
+} from "./veiculos.schema.js";
 
 
 export class VeiculosController {

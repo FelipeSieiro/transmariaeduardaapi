@@ -6,13 +6,13 @@ import type {
 
 import {
   ContratosService
-} from "./contratos.service";
+} from "./contratos.service.js";
 
 
 import {
   createContratoSchema,
   updateContratoSchema
-} from "./contratos.schema";
+} from "./contratos.schema.js";
 
 
 

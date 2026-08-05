@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { MotoristasController } from "./motoristas.controller";
+import { MotoristasController } from "./motoristas.controller.js";
 
 
 const router = Router();

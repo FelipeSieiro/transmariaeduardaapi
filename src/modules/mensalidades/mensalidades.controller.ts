@@ -1,13 +1,13 @@
 import type { Request, Response } from "express";
 
-import { MensalidadesService } from "./mensalidades.service";
+import { MensalidadesService } from "./mensalidades.service.js";
 
 import {
   createMensalidadeSchema,
   updateMensalidadeSchema,
   pagarMensalidadeSchema,
   gerarMensalidadesSchema,
-} from "./mensalidades.schema";
+} from "./mensalidades.schema.js";
 
 // =====================================================
 // CONTROLLER DE MENSALIDADES

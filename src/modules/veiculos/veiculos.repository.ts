@@ -1,9 +1,9 @@
-import { supabase } from "../../config/supabase";
+import { supabase } from "../../config/supabase.js";
 
 import type {
   CreateVeiculoDTO,
   UpdateVeiculoDTO,
-} from "./veiculos.types";
+} from "./veiculos.types.js";
 
 
 export class VeiculosRepository {

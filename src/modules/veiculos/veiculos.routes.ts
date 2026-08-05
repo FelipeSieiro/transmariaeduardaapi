@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { VeiculosController } from "./veiculos.controller";
+import { VeiculosController } from "./veiculos.controller.js";
 
 
 const router = Router();

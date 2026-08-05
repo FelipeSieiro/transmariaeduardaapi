@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { AlunosController } from "./alunos.controller";
+import { AlunosController } from "./alunos.controller.js";
 
 const router = Router();
 const controller = new AlunosController();

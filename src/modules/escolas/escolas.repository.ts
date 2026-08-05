@@ -1,9 +1,9 @@
-import { supabase } from "../../config/supabase";
+import { supabase } from "../../config/supabase.js";
 
 import type {
   CreateEscolaDTO,
   UpdateEscolaDTO,
-} from "./escolas.types";
+} from "./escolas.types.js";
 
 
 const TABLE = "escolas";

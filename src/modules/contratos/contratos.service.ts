@@ -1,12 +1,12 @@
-import { ContratosRepository } from "./contratos.repository";
-import { MensalidadesService } from "../mensalidades/mensalidades.service";
+import { ContratosRepository } from "./contratos.repository.js";
+import { MensalidadesService } from "../mensalidades/mensalidades.service.js";
 
 import type {
   CreateContratoDTO,
   UpdateContratoDTO,
-} from "./contratos.types";
+} from "./contratos.types.js";
 
-import { supabase } from "../../config/supabase";
+import { supabase } from "../../config/supabase.js";
 
 export class ContratosService {
   private repository: ContratosRepository;

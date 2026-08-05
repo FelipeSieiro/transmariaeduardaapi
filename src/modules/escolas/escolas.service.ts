@@ -1,9 +1,9 @@
-import { EscolasRepository } from "./escolas.repository";
+import { EscolasRepository } from "./escolas.repository.js";
 
 import type {
     CreateEscolaDTO,
     UpdateEscolaDTO,
-} from "./escolas.types";
+} from "./escolas.types.js";
 
 
 export class EscolasService {

@@ -1,9 +1,9 @@
-import { supabase } from "../../config/supabase";
+import { supabase } from "../../config/supabase.js";
 
 import type {
   CreateRotaDTO,
   UpdateRotaDTO,
-} from "./rotas.types";
+} from "./rotas.types.js";
 
 
 

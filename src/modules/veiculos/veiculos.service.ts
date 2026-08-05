@@ -1,9 +1,9 @@
-import { VeiculosRepository } from "./veiculos.repository";
+import { VeiculosRepository } from "./veiculos.repository.js";
 
 import type {
   CreateVeiculoDTO,
   UpdateVeiculoDTO,
-} from "./veiculos.types";
+} from "./veiculos.types.js";
 
 
 export class VeiculosService {

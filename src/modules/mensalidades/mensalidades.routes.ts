@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { MensalidadesController } from "./mensalidades.controller";
+import { MensalidadesController } from "./mensalidades.controller.js";
 
 const router = Router();
 const controller = new MensalidadesController();

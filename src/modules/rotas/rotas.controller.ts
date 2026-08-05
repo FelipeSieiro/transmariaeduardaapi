@@ -1,12 +1,12 @@
 import type { Request, Response } from "express";
 
-import { RotasService } from "./rotas.service";
+import { RotasService } from "./rotas.service.js";
 
 import {
   createRotaSchema,
   updateRotaSchema,
   updateRotaStatusSchema,
-} from "./rotas.schema";
+} from "./rotas.schema.js";
 
 
 

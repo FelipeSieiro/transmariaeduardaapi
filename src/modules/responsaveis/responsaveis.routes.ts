@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { ResponsaveisController } from "./responsaveis.controller";
+import { ResponsaveisController } from "./responsaveis.controller.js";
 
 
 const router = Router();

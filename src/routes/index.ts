@@ -1,16 +1,16 @@
 import { Router } from "express";
 
-import { healthRouter } from "./health.routes";
-import { escolasRouter } from "../modules/escolas/escolas.routes";
-import { motoristasRouter } from "../modules/motoristas/motoristas.routes";
-import { veiculosRouter } from "../modules/veiculos/veiculos.routes";
-import { rotasRouter } from "../modules/rotas/rotas.routes";
-import { responsaveisRouter } from "../modules/responsaveis/responsaveis.routes";
-import { alunosRouter } from "../modules/alunos/alunos.routes";
-import contratosRoutes from "../modules/contratos/contratos.routes";
+import { healthRouter } from "./health.routes.js";
+import { escolasRouter } from "../modules/escolas/escolas.routes.js";
+import { motoristasRouter } from "../modules/motoristas/motoristas.routes.js";
+import { veiculosRouter } from "../modules/veiculos/veiculos.routes.js";
+import { rotasRouter } from "../modules/rotas/rotas.routes.js";
+import { responsaveisRouter } from "../modules/responsaveis/responsaveis.routes.js";
+import { alunosRouter } from "../modules/alunos/alunos.routes.js";
+import contratosRoutes from "../modules/contratos/contratos.routes.js";
 
 // 1. IMPORTAR O MENSALIDADES ROUTER
-import { mensalidadesRouter } from "../modules/mensalidades/mensalidades.routes";
+import { mensalidadesRouter } from "../modules/mensalidades/mensalidades.routes.js";
 
 const router = Router();
 

@@ -1,12 +1,12 @@
 import { randomUUID } from "node:crypto";
-import { AlunosRepository } from "./alunos.repository";
+import { AlunosRepository } from "./alunos.repository.js";
 import type {
     CreateAlunoDTO,
     UpdateAlunoDTO,
     CreateAlunoResponsavelDTO,
     CreateAlunoCompletoDTO,
-} from "./alunos.types";
-import { supabase } from "../../config/supabase";
+} from "./alunos.types.js";
+import { supabase } from "../../config/supabase.js";
 
 export class AlunosService {
     private repository: AlunosRepository;
