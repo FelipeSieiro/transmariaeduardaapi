@@ -13,7 +13,6 @@ export function authorize(
         next: NextFunction
     ) => {
 
-
         if(!req.user){
 
             throw new AppError(
@@ -24,8 +23,9 @@ export function authorize(
         }
 
 
-
-        if(!roles.includes(req.user.role)){
+        if(!roles.includes(
+            req.user.perfil.toUpperCase() as "ADMIN" | "USER"
+        )){
 
             throw new AppError(
                 "Usuário sem permissão",
@@ -33,7 +33,6 @@ export function authorize(
             );
 
         }
-
 
 
         next();
