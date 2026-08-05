@@ -88,8 +88,7 @@ export class MotoristasController {
     try {
 
 
-      const { id } =
-        req.params;
+      const id = String(req.params.id);
 
 
 
@@ -205,8 +204,7 @@ export class MotoristasController {
     try {
 
 
-      const { id } =
-        req.params;
+      const id = String(req.params.id);
 
 
 
@@ -271,8 +269,7 @@ export class MotoristasController {
     try {
 
 
-      const { id } =
-        req.params;
+      const id = String(req.params.id);
 
 
 
@@ -329,8 +326,7 @@ export class MotoristasController {
     try {
 
 
-      const { id } =
-        req.params;
+      const id = String(req.params.id);
 
 
 

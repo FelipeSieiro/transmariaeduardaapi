@@ -56,8 +56,7 @@ export class VeiculosController {
   ) {
 
 
-    const { id } =
-      req.params;
+    const id = String(req.params.id);
 
 
 
@@ -124,7 +123,7 @@ export class VeiculosController {
   ) {
 
 
-    const idParam = req.params.id;
+    const idParam = String(req.params.id);
     const id = Array.isArray(idParam) ? idParam[0] : idParam;
 
     if (!id) {
@@ -170,7 +169,7 @@ export class VeiculosController {
   ) {
 
 
-    const idParam = req.params.id;
+    const idParam = String(req.params.id);
     const id = Array.isArray(idParam) ? idParam[0] : idParam;
 
     if (!id) {
@@ -218,7 +217,7 @@ export class VeiculosController {
   ) {
 
 
-    const idParam = req.params.id;
+    const idParam = String(req.params.id);
     const id = Array.isArray(idParam) ? idParam[0] : idParam;
 
     if (!id) {

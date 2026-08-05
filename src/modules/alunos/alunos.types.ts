@@ -100,7 +100,7 @@ export interface CreateResponsavelDTO {
 
 export interface CreateAlunoResponsavelDTO {
 
-  responsavel_id: string;
+  responsavel_id?: string;
 
   parentesco?: string;
 

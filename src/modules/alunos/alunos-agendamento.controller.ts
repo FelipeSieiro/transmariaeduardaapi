@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Put } from "@nestjs/common";
+import { Body, Controller, Get, Param, Put } from "../../shared/nest-compat";
 import type { AlunosAgendamentoService } from "./alunos-agendamento.service";
 import type { SyncAgendamentosAlunoDto } from "./dtos/aluno-agendamento-rota.dto";
 

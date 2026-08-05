@@ -92,15 +92,15 @@ export interface CreateMensalidadeDTO {
 
 
 
-  data_pagamento?: string;
+  data_pagamento?: string | null;
 
 
 
-  forma_pagamento?: string;
+  forma_pagamento?: string | null;
 
 
 
-  observacoes?: string;
+  observacoes?: string | null;
 
 
 }
@@ -137,15 +137,15 @@ export interface UpdateMensalidadeDTO {
 
 
 
-  data_pagamento?: string;
+  data_pagamento?: string | null;
 
 
 
-  forma_pagamento?: string;
+  forma_pagamento?: string | null;
 
 
 
-  observacoes?: string;
+  observacoes?: string | null;
 
 
 }
@@ -175,7 +175,7 @@ export interface PagarMensalidadeDTO {
 
 
 
-  observacoes?: string;
+  observacoes?: string | null;
 
 
 }

@@ -87,9 +87,7 @@ export class ContratosController {
     ) => {
 
 
-      const {
-        id
-      } = req.params;
+      const id = String(req.params.id);
 
 
 
@@ -179,9 +177,7 @@ export class ContratosController {
 
 
 
-      const {
-        id
-      } = req.params;
+      const id = String(req.params.id);
 
 
 
@@ -237,9 +233,7 @@ export class ContratosController {
 
 
 
-      const {
-        id
-      } = req.params;
+      const id = String(req.params.id);
 
 
 

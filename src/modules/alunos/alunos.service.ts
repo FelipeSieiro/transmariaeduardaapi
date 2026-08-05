@@ -33,7 +33,7 @@ export class AlunosService {
         // 1. Se a matrícula NÃO foi informada, gera um UUID automático e atribui ao id e à matrícula
         if (!payload.matricula || payload.matricula.trim() === "") {
             const novoId = randomUUID();
-            payload.id = novoId; // Garante que o ID será o mesmo
+            (payload as any).id = novoId; // Garante que o ID será o mesmo
             payload.matricula = novoId; // A matrícula passa a ser o mesmo UUID
         } else {
             // 2. Se a matrícula FOI informada manualmente, verifica se já existe no banco

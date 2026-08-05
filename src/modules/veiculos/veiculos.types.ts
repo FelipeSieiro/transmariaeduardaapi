@@ -35,7 +35,7 @@ export interface CreateVeiculoDTO {
 
   capacidade?: number;
 
-  motorista_id?: string;
+  motorista_id?: string | null;
 
   status?: string;
 
@@ -54,7 +54,7 @@ export interface UpdateVeiculoDTO {
 
   capacidade?: number;
 
-  motorista_id?: string;
+  motorista_id?: string | null;
 
   status?: string;
 

@@ -61,7 +61,7 @@ export class AlunosController {
 
   findById = async (req: Request, res: Response) => {
     try {
-      const idParam = req.params.id;
+      const idParam = String(req.params.id);
       const id = Array.isArray(idParam) ? idParam[0] : idParam;
 
       if (!id) {
@@ -125,7 +125,7 @@ export class AlunosController {
 
   update = async (req: Request, res: Response) => {
     try {
-      const idParam = req.params.id;
+      const idParam = String(req.params.id);
       const id = Array.isArray(idParam) ? idParam[0] : idParam;
 
       if (!id) {
@@ -153,7 +153,7 @@ export class AlunosController {
 
   delete = async (req: Request, res: Response) => {
     try {
-      const idParam = req.params.id;
+      const idParam = String(req.params.id);
       const id = Array.isArray(idParam) ? idParam[0] : idParam;
 
       if (!id) {
@@ -180,7 +180,7 @@ export class AlunosController {
 
   addResponsavel = async (req: Request, res: Response) => {
     try {
-      const idParam = req.params.id;
+      const idParam = String(req.params.id);
       const id = Array.isArray(idParam) ? idParam[0] : idParam;
 
       if (!id) {
@@ -208,7 +208,7 @@ export class AlunosController {
 
   getAgendamentosRotas = async (req: Request, res: Response) => {
     try {
-      const idParam = req.params.id;
+      const idParam = String(req.params.id);
       const id = Array.isArray(idParam) ? idParam[0] : idParam;
 
       if (!id) {
@@ -235,7 +235,7 @@ export class AlunosController {
 
   syncAgendamentosRotas = async (req: Request, res: Response) => {
     try {
-      const idParam = req.params.id;
+      const idParam = String(req.params.id);
       const id = Array.isArray(idParam) ? idParam[0] : idParam;
 
       if (!id) {

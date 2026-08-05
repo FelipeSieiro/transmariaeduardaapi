@@ -65,7 +65,7 @@ export class MensalidadesController {
   // GET /mensalidades/:id
   // =====================================================
   findById = async (req: Request, res: Response) => {
-    const idParam = req.params.id;
+    const idParam = String(req.params.id);
 
     const id = Array.isArray(idParam) ? idParam[0] : idParam;
 
@@ -122,7 +122,7 @@ export class MensalidadesController {
   // PUT /mensalidades/:id
   // =====================================================
   update = async (req: Request, res: Response) => {
-    const idParam = req.params.id;
+    const idParam = String(req.params.id);
 
     const id = Array.isArray(idParam) ? idParam[0] : idParam;
 
@@ -148,7 +148,7 @@ export class MensalidadesController {
   // PATCH /mensalidades/:id/pagar
   // =====================================================
   pagar = async (req: Request, res: Response) => {
-    const idParam = req.params.id;
+    const idParam = String(req.params.id);
 
     const id = Array.isArray(idParam) ? idParam[0] : idParam;
 
@@ -174,7 +174,7 @@ export class MensalidadesController {
   // DELETE /mensalidades/:id
   // =====================================================
   delete = async (req: Request, res: Response) => {
-    const idParam = req.params.id;
+    const idParam = String(req.params.id);
 
     const id = Array.isArray(idParam) ? idParam[0] : idParam;
 

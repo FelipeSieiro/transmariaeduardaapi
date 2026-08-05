@@ -67,7 +67,7 @@ export class ResponsaveisController {
     ) => {
 
 
-      const idParam = req.params.id;
+      const idParam = String(req.params.id);
       const id = Array.isArray(idParam) ? idParam[0] : idParam;
 
       if (!id) {
@@ -150,7 +150,7 @@ export class ResponsaveisController {
     ) => {
 
 
-      const idParam = req.params.id;
+      const idParam = String(req.params.id);
       const id = Array.isArray(idParam) ? idParam[0] : idParam;
 
       if (!id) {
@@ -201,7 +201,7 @@ export class ResponsaveisController {
     ) => {
 
 
-      const idParam = req.params.id;
+      const idParam = String(req.params.id);
       const id = Array.isArray(idParam) ? idParam[0] : idParam;
 
       if (!id) {
