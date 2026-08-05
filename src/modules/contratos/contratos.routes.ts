@@ -2,10 +2,10 @@ import {
   Router
 } from "express";
 
-
-import {
 import { authenticate } from "../../middlewares/auth.js";
 import { authorize } from "../../middlewares/authorize.js";
+
+import {
   ContratosController
 } from "./contratos.controller.js";
 
