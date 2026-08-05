@@ -33,4 +33,4 @@ app.use((_, res) => {
   });
 });
 
-export { app };
+export default app;
