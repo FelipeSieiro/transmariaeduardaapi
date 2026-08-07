@@ -207,6 +207,7 @@ export class AlunosService {
         await this.findById(alunoId);
         return this.repository.addResponsavel(alunoId, payload);
     }
+
     // =====================================================
     // AGENDAMENTOS DE ROTAS DO ALUNO
     // =====================================================
@@ -248,7 +249,8 @@ export class AlunosService {
                 aluno_id: alunoId,
                 rota_id: item.rota_id,
                 dia_semana: item.dia_semana,
-                periodo: item.periodo,
+                tipo_trajeto: item.tipo_trajeto,  // ✅ CORRIGIDO - Agora pega tipo_trajeto do DTO
+                horario: item.horario,             // ✅ CORRIGIDO - Agora pega horario do DTO
             }));
 
             const { data, error: insertError } = await supabase
