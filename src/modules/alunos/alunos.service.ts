@@ -52,7 +52,7 @@ export class AlunosService {
             }
         }
 
-        // Validações de Escola e Rota
+        // Validações de Escola e Rota (opcional)
         if (payload.escola_id) {
             const { data: escola } = await supabase
                 .from("escolas")
