@@ -1,5 +1,6 @@
 import { randomUUID } from "node:crypto";
 import { AlunosRepository } from "./alunos.repository.js";
+import { MensalidadesService } from "../mensalidades/mensalidades.service.js";
 import type {
     CreateAlunoDTO,
     UpdateAlunoDTO,
@@ -10,9 +11,11 @@ import { supabase } from "../../config/supabase.js";
 
 export class AlunosService {
     private repository: AlunosRepository;
+    private mensalidadesService: MensalidadesService;
 
     constructor() {
         this.repository = new AlunosRepository();
+        this.mensalidadesService = new MensalidadesService();
     }
 
     async findAll() {
@@ -147,7 +150,7 @@ export class AlunosService {
             if (payload.contrato) {
                 console.log("Criando contrato...");
 
-                const { error } = await supabase
+                const { data: novoContrato, error } = await supabase
                     .from("contratos")
                     .insert({
                         aluno_id: aluno.id,
@@ -164,14 +167,26 @@ export class AlunosService {
                             payload.contrato.observacoes,
                         status:
                             payload.contrato.status ?? "ativo",
-                    });
+                    })
+                    .select()
+                    .single();
 
                 if (error) {
                     console.error(error);
                     throw error;
                 }
 
-                console.log("Contrato criado");
+                console.log("Contrato criado:", novoContrato.id);
+
+                // Gera mensalidades automáticas após criar o contrato
+                if (novoContrato && novoContrato.id) {
+                    try {
+                        await this.mensalidadesService.gerarPorContrato(novoContrato.id);
+                        console.log("Mensalidades geradas com sucesso");
+                    } catch (error) {
+                        console.error("Erro ao gerar mensalidades automáticas:", error);
+                    }
+                }
             }
 
             return this.repository.findById(aluno.id);
