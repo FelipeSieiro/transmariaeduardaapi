@@ -90,66 +90,55 @@ export class AlunosService {
                 console.log("Adicionando responsáveis...");
 
                 for (const responsavel of payload.responsaveis) {
+                    // Verifica se o responsável já existe pelo CPF
+                    let responsavelId;
+                    
+                    if (responsavel.cpf) {
+                        const { data: responsavelExistente } = await supabase
+                            .from("responsaveis")
+                            .select("id")
+                            .eq("cpf", responsavel.cpf)
+                            .is("deleted_at", null)
+                            .maybeSingle();
 
-
-                    const {
-                        data: novoResponsavel,
-                        error
-                    } = await supabase
-                        .from("responsaveis")
-                        .insert({
-
-                            nome: responsavel.nome,
-
-                            telefone:
-                                responsavel.telefone ?? null,
-
-                            email:
-                                responsavel.email ?? null,
-
-                            cpf:
-                                responsavel.cpf ?? null,
-
-                            endereco:
-                                responsavel.endereco ?? null,
-
-                            observacoes:
-                                responsavel.observacoes ?? null,
-
-                        })
-                        .select()
-                        .single();
-
-
-
-                    if (error) {
-                        throw error;
+                        if (responsavelExistente) {
+                            responsavelId = responsavelExistente.id;
+                            console.log("Responsável existente encontrado:", responsavelId);
+                        }
                     }
 
+                    // Se não encontrou pelo CPF, cria um novo
+                    if (!responsavelId) {
+                        const { data: novoResponsavel, error } = await supabase
+                            .from("responsaveis")
+                            .insert({
+                                nome: responsavel.nome,
+                                telefone: responsavel.telefone ?? null,
+                                email: responsavel.email ?? null,
+                                cpf: responsavel.cpf ?? null,
+                                endereco: responsavel.endereco ?? null,
+                                observacoes: responsavel.observacoes ?? null,
+                            })
+                            .select()
+                            .single();
 
+                        if (error) {
+                            throw error;
+                        }
+
+                        responsavelId = novoResponsavel.id;
+                        console.log("Novo responsável criado:", responsavelId);
+                    }
 
                     await this.repository.addResponsavel(
                         aluno.id,
                         {
-
-                            responsavel_id:
-                                novoResponsavel.id,
-
-
-                            parentesco:
-                                responsavel.parentesco,
-
-
-                            responsavel_financeiro:
-                                responsavel.responsavel_financeiro,
-
-
-                            responsavel_emergencia:
-                                responsavel.responsavel_emergencia,
-
+                            responsavel_id: responsavelId,
+                            parentesco: responsavel.parentesco,
+                            responsavel_financeiro: responsavel.responsavel_financeiro,
+                            responsavel_emergencia: responsavel.responsavel_emergencia,
                         }
                     );
-
                 }
 
                 console.log("Responsáveis adicionados");
@@ -249,8 +238,8 @@ export class AlunosService {
                 aluno_id: alunoId,
                 rota_id: item.rota_id,
                 dia_semana: item.dia_semana,
-                tipo_trajeto: item.tipo_trajeto,  // ✅ CORRIGIDO - Agora pega tipo_trajeto do DTO
-                horario: item.horario,             // ✅ CORRIGIDO - Agora pega horario do DTO
+                tipo_trajeto: item.tipo_trajeto,
+                horario: item.horario,
             }));
 
             const { data, error: insertError } = await supabase
